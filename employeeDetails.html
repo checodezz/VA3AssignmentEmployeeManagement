@@ -22,7 +22,7 @@
     </header>
 
     <main class="container mt-4">
-      <section id="employeeDetail"></section>
+      <section id="employeeDetail" class="row"></section>
     </main>
     <script>
       //database
@@ -66,23 +66,61 @@
       // console.log(employee);
 
       //display the details on the view
+      /*
+          let employeeDetailElement = document.getElementById("employeeDetail");
+          if (employee) {
+            employeeDetailElement.innerHTML = `
+      <div class='card'>
+      <div class='card-body'>
+      <h2 class='card-title'>${employee.name}</h2>
+      <ul class='list-group list-group-flush'>
+      <li class='list-group-item'>Name: ${employee.name}</li>
+      <li class='list-group-item'>Designation: ${employee.title}</li>
+      <li class='list-group-item'>Department: ${employee.department} </li>
+      </ul>
+      </div>
+      </div>`;
+          } else {
+            employeeDetailElement.innerHtml = "Employee not Found.";
+          } */
 
-      let employeeDetailElement = document.getElementById("employeeDetail");
-      if (employee) {
-        employeeDetailElement.innerHTML = `
-  <div class='card'>
-  <div class='card-body'>
-  <h2 class='card-title'>${employee.name}</h2>    
-  <ul class='list-group list-group-flush'>
-  <li class='list-group-item'>Name: ${employee.name}</li>
-  <li class='list-group-item'>Designation: ${employee.title}</li>
-  <li class='list-group-item'>Department: ${employee.department} </li>
-  </ul>
-  </div>
-  </div>`;
-      } else {
-        employeeDetailElement.innerHtml = "Employee not Found.";
-      }
+      const employeeDetail = document.querySelector("#employeeDetail");
+
+      const col = document.createElement("div");
+      col.className = "col";
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const cardTitle = document.createElement("div");
+      cardTitle.className = "card-title container";
+      cardTitle.innerHTML = `<h2>${employee.name}</h2>`;
+
+      const unorderedList = document.createElement("ul");
+      unorderedList.className = "list-group list-group-flush";
+
+      const nameLi = document.createElement("li");
+      nameLi.className = "list-group-item";
+      nameLi.innerHTML = `<strong>Name: </strong> ${employee.name}`;
+
+      const designationLi = document.createElement("li");
+      designationLi.className = "list-group-item";
+      designationLi.innerHTML = `<strong>Designation: </strong> ${employee.title}`;
+
+      const departmentLi = document.createElement("li");
+      departmentLi.className = "list-group-item";
+      departmentLi.innerHTML = `<strong>Department: </strong> ${employee.department}`;
+
+      unorderedList.appendChild(nameLi);
+      unorderedList.appendChild(designationLi);
+      unorderedList.appendChild(departmentLi);
+
+      card.appendChild(cardTitle);
+      card.appendChild(unorderedList);
+
+      col.appendChild(card);
+
+      employeeDetail.appendChild(col);
     </script>
   </body>
 </html>
